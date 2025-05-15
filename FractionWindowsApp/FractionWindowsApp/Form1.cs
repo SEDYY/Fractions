@@ -10,7 +10,7 @@ public class Fraction
     public Fraction(long integer, ushort fractional)
     {
         if (fractional > 999)
-            throw new ArgumentException("Дробная часть должна быть от 0 до 999.");
+            throw new ArgumentException("Дробная часть должна быть строго от 0 до 999.");
         integerPart = integer;
         fractionalPart = fractional;
     }
