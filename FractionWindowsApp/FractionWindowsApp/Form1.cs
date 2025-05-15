@@ -10,7 +10,7 @@ public class Fraction
     public Fraction(long integer, ushort fractional)
     {
         if (fractional > 999)
-            throw new ArgumentException("Дробная часть должна быть от 0 до 999.");
+            throw new ArgumentException("Р”СЂРѕР±РЅР°СЏ С‡Р°СЃС‚СЊ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РѕС‚ 0 РґРѕ 999.");
         integerPart = integer;
         fractionalPart = fractional;
     }
@@ -27,7 +27,7 @@ public class Fraction
         set
         {
             if (value > 999)
-                throw new ArgumentException("Дробная часть должна быть от 0 до 999.");
+                throw new ArgumentException("Р”СЂРѕР±РЅР°СЏ С‡Р°СЃС‚СЊ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РѕС‚ 0 РґРѕ 999.");
             fractionalPart = value;
         }
     }
@@ -41,7 +41,7 @@ public class Fraction
     {
         decimal sum = a.ToDecimal() + b.ToDecimal();
         if (sum > long.MaxValue || sum < long.MinValue)
-            throw new OverflowException("Результат сложения превышает допустимый диапазон.");
+            throw new OverflowException("Р РµР·СѓР»СЊС‚Р°С‚ СЃР»РѕР¶РµРЅРёСЏ РїСЂРµРІС‹С€Р°РµС‚ РґРѕРїСѓСЃС‚РёРјС‹Р№ РґРёР°РїР°Р·РѕРЅ.");
         long integer = (long)sum;
         ushort fractional = (ushort)Math.Round(Math.Abs(sum - integer) * 1000, 0);
         if (fractional > 999) fractional = 999;
@@ -52,7 +52,7 @@ public class Fraction
     {
         decimal diff = a.ToDecimal() - b.ToDecimal();
         if (diff > long.MaxValue || diff < long.MinValue)
-            throw new OverflowException("Результат вычитания превышает допустимый диапазон.");
+            throw new OverflowException("Р РµР·СѓР»СЊС‚Р°С‚ РІС‹С‡РёС‚Р°РЅРёСЏ РїСЂРµРІС‹С€Р°РµС‚ РґРѕРїСѓСЃС‚РёРјС‹Р№ РґРёР°РїР°Р·РѕРЅ.");
         long integer = (long)diff;
         ushort fractional = (ushort)Math.Round(Math.Abs(diff - integer) * 1000, 0);
         if (fractional > 999) fractional = 999;
@@ -63,7 +63,7 @@ public class Fraction
     {
         decimal product = a.ToDecimal() * b.ToDecimal();
         if (product > long.MaxValue || product < long.MinValue)
-            throw new OverflowException("Результат умножения превышает допустимый диапазон.");
+            throw new OverflowException("Р РµР·СѓР»СЊС‚Р°С‚ СѓРјРЅРѕР¶РµРЅРёСЏ РїСЂРµРІС‹С€Р°РµС‚ РґРѕРїСѓСЃС‚РёРјС‹Р№ РґРёР°РїР°Р·РѕРЅ.");
         long integer = (long)product;
         ushort fractional = (ushort)Math.Round(Math.Abs(product - integer) * 1000, 0);
         if (fractional > 999) fractional = 999;
@@ -152,32 +152,32 @@ public class FractionCalculatorForm : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Ошибка при инициализации формы: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"РћС€РёР±РєР° РїСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё С„РѕСЂРјС‹: {ex.Message}", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             throw;
         }
     }
 
     private void InitializeComponents()
     {
-        // Настройка формы
-        this.Text = "Калькулятор дробей";
+        // РќР°СЃС‚СЂРѕР№РєР° С„РѕСЂРјС‹
+        this.Text = "РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ РґСЂРѕР±РµР№";
         this.Size = new Size(480, 380);
-        this.BackColor = Color.FromArgb(30, 30, 30); // Тёмный фон
-        this.Font = new Font(SystemFonts.DefaultFont.FontFamily.Name, 10); // Запасной шрифт
+        this.BackColor = Color.FromArgb(30, 30, 30); // РўС‘РјРЅС‹Р№ С„РѕРЅ
+        this.Font = new Font(SystemFonts.DefaultFont.FontFamily.Name, 10); // Р—Р°РїР°СЃРЅРѕР№ С€СЂРёС„С‚
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.MaximizeBox = false;
 
-        // Панель для первой дроби
+        // РџР°РЅРµР»СЊ РґР»СЏ РїРµСЂРІРѕР№ РґСЂРѕР±Рё
         panelFirstFraction.Location = new Point(20, 20);
         panelFirstFraction.Size = new Size(210, 110);
         panelFirstFraction.BorderStyle = BorderStyle.FixedSingle;
         panelFirstFraction.BackColor = Color.FromArgb(45, 45, 45);
         panelFirstFraction.Parent = this;
 
-        // Метки и поля для первой дроби
+        // РњРµС‚РєРё Рё РїРѕР»СЏ РґР»СЏ РїРµСЂРІРѕР№ РґСЂРѕР±Рё
         var lblFirstFraction = new Label
         {
-            Text = "Первая дробь",
+            Text = "РџРµСЂРІР°СЏ РґСЂРѕР±СЊ",
             Location = new Point(10, 10),
             Size = new Size(190, 20),
             Font = new Font(SystemFonts.DefaultFont.FontFamily.Name, 11, FontStyle.Bold),
@@ -187,7 +187,7 @@ public class FractionCalculatorForm : Form
 
         var lblInt1 = new Label
         {
-            Text = "Целая часть:",
+            Text = "Р¦РµР»Р°СЏ С‡Р°СЃС‚СЊ:",
             Location = new Point(10, 40),
             Size = new Size(80, 20),
             ForeColor = Color.White
@@ -200,11 +200,11 @@ public class FractionCalculatorForm : Form
         txtInt1.ForeColor = Color.White;
         txtInt1.BorderStyle = BorderStyle.FixedSingle;
         txtInt1.Parent = panelFirstFraction;
-        toolTip.SetToolTip(txtInt1, "Введите целую часть числа (например, 2)");
+        toolTip.SetToolTip(txtInt1, "Р’РІРµРґРёС‚Рµ С†РµР»СѓСЋ С‡Р°СЃС‚СЊ С‡РёСЃР»Р° (РЅР°РїСЂРёРјРµСЂ, 2)");
 
         var lblFrac1 = new Label
         {
-            Text = "Дробная часть:",
+            Text = "Р”СЂРѕР±РЅР°СЏ С‡Р°СЃС‚СЊ:",
             Location = new Point(10, 70),
             Size = new Size(80, 20),
             ForeColor = Color.White
@@ -217,19 +217,19 @@ public class FractionCalculatorForm : Form
         txtFrac1.ForeColor = Color.White;
         txtFrac1.BorderStyle = BorderStyle.FixedSingle;
         txtFrac1.Parent = panelFirstFraction;
-        toolTip.SetToolTip(txtFrac1, "Введите дробную часть (0–999, например, 500)");
+        toolTip.SetToolTip(txtFrac1, "Р’РІРµРґРёС‚Рµ РґСЂРѕР±РЅСѓСЋ С‡Р°СЃС‚СЊ (0вЂ“999, РЅР°РїСЂРёРјРµСЂ, 500)");
 
-        // Панель для второй дроби
+        // РџР°РЅРµР»СЊ РґР»СЏ РІС‚РѕСЂРѕР№ РґСЂРѕР±Рё
         panelSecondFraction.Location = new Point(240, 20);
         panelSecondFraction.Size = new Size(210, 110);
         panelSecondFraction.BorderStyle = BorderStyle.FixedSingle;
         panelSecondFraction.BackColor = Color.FromArgb(45, 45, 45);
         panelSecondFraction.Parent = this;
 
-        // Метки и поля для второй дроби
+        // РњРµС‚РєРё Рё РїРѕР»СЏ РґР»СЏ РІС‚РѕСЂРѕР№ РґСЂРѕР±Рё
         var lblSecondFraction = new Label
         {
-            Text = "Вторая дробь",
+            Text = "Р’С‚РѕСЂР°СЏ РґСЂРѕР±СЊ",
             Location = new Point(10, 10),
             Size = new Size(190, 20),
             Font = new Font(SystemFonts.DefaultFont.FontFamily.Name, 11, FontStyle.Bold),
@@ -239,7 +239,7 @@ public class FractionCalculatorForm : Form
 
         var lblInt2 = new Label
         {
-            Text = "Целая часть:",
+            Text = "Р¦РµР»Р°СЏ С‡Р°СЃС‚СЊ:",
             Location = new Point(10, 40),
             Size = new Size(80, 20),
             ForeColor = Color.White
@@ -252,11 +252,11 @@ public class FractionCalculatorForm : Form
         txtInt2.ForeColor = Color.White;
         txtInt2.BorderStyle = BorderStyle.FixedSingle;
         txtInt2.Parent = panelSecondFraction;
-        toolTip.SetToolTip(txtInt2, "Введите целую часть числа (например, 1)");
+        toolTip.SetToolTip(txtInt2, "Р’РІРµРґРёС‚Рµ С†РµР»СѓСЋ С‡Р°СЃС‚СЊ С‡РёСЃР»Р° (РЅР°РїСЂРёРјРµСЂ, 1)");
 
         var lblFrac2 = new Label
         {
-            Text = "Дробная часть:",
+            Text = "Р”СЂРѕР±РЅР°СЏ С‡Р°СЃС‚СЊ:",
             Location = new Point(10, 70),
             Size = new Size(80, 20),
             ForeColor = Color.White
@@ -269,15 +269,15 @@ public class FractionCalculatorForm : Form
         txtFrac2.ForeColor = Color.White;
         txtFrac2.BorderStyle = BorderStyle.FixedSingle;
         txtFrac2.Parent = panelSecondFraction;
-        toolTip.SetToolTip(txtFrac2, "Введите дробную часть (0–999, например, 750)");
+        toolTip.SetToolTip(txtFrac2, "Р’РІРµРґРёС‚Рµ РґСЂРѕР±РЅСѓСЋ С‡Р°СЃС‚СЊ (0вЂ“999, РЅР°РїСЂРёРјРµСЂ, 750)");
 
-        // Панель для кнопок
+        // РџР°РЅРµР»СЊ РґР»СЏ РєРЅРѕРїРѕРє
         panelButtons.Location = new Point(20, 140);
         panelButtons.Size = new Size(430, 50);
         panelButtons.Parent = this;
 
-        // Кнопки операций
-        btnAdd.Text = "Сложить";
+        // РљРЅРѕРїРєРё РѕРїРµСЂР°С†РёР№
+        btnAdd.Text = "РЎР»РѕР¶РёС‚СЊ";
         btnAdd.Location = new Point(10, 10);
         btnAdd.Size = new Size(100, 30);
         btnAdd.FlatStyle = FlatStyle.Flat;
@@ -288,9 +288,9 @@ public class FractionCalculatorForm : Form
         btnAdd.MouseEnter += (s, e) => btnAdd.BackColor = Color.FromArgb(30, 144, 255);
         btnAdd.MouseLeave += (s, e) => btnAdd.BackColor = Color.FromArgb(0, 120, 215);
         btnAdd.Parent = panelButtons;
-        toolTip.SetToolTip(btnAdd, "Выполнить сложение двух дробей");
+        toolTip.SetToolTip(btnAdd, "Р’С‹РїРѕР»РЅРёС‚СЊ СЃР»РѕР¶РµРЅРёРµ РґРІСѓС… РґСЂРѕР±РµР№");
 
-        btnSubtract.Text = "Вычесть";
+        btnSubtract.Text = "Р’С‹С‡РµСЃС‚СЊ";
         btnSubtract.Location = new Point(120, 10);
         btnSubtract.Size = new Size(100, 30);
         btnSubtract.FlatStyle = FlatStyle.Flat;
@@ -301,9 +301,9 @@ public class FractionCalculatorForm : Form
         btnSubtract.MouseEnter += (s, e) => btnSubtract.BackColor = Color.FromArgb(30, 144, 255);
         btnSubtract.MouseLeave += (s, e) => btnSubtract.BackColor = Color.FromArgb(0, 120, 215);
         btnSubtract.Parent = panelButtons;
-        toolTip.SetToolTip(btnSubtract, "Выполнить вычитание второй дроби из первой");
+        toolTip.SetToolTip(btnSubtract, "Р’С‹РїРѕР»РЅРёС‚СЊ РІС‹С‡РёС‚Р°РЅРёРµ РІС‚РѕСЂРѕР№ РґСЂРѕР±Рё РёР· РїРµСЂРІРѕР№");
 
-        btnMultiply.Text = "Умножить";
+        btnMultiply.Text = "РЈРјРЅРѕР¶РёС‚СЊ";
         btnMultiply.Location = new Point(230, 10);
         btnMultiply.Size = new Size(100, 30);
         btnMultiply.FlatStyle = FlatStyle.Flat;
@@ -314,9 +314,9 @@ public class FractionCalculatorForm : Form
         btnMultiply.MouseEnter += (s, e) => btnMultiply.BackColor = Color.FromArgb(30, 144, 255);
         btnMultiply.MouseLeave += (s, e) => btnMultiply.BackColor = Color.FromArgb(0, 120, 215);
         btnMultiply.Parent = panelButtons;
-        toolTip.SetToolTip(btnMultiply, "Выполнить умножение двух дробей");
+        toolTip.SetToolTip(btnMultiply, "Р’С‹РїРѕР»РЅРёС‚СЊ СѓРјРЅРѕР¶РµРЅРёРµ РґРІСѓС… РґСЂРѕР±РµР№");
 
-        btnCompare.Text = "Сравнить";
+        btnCompare.Text = "РЎСЂР°РІРЅРёС‚СЊ";
         btnCompare.Location = new Point(340, 10);
         btnCompare.Size = new Size(100, 30);
         btnCompare.FlatStyle = FlatStyle.Flat;
@@ -327,17 +327,17 @@ public class FractionCalculatorForm : Form
         btnCompare.MouseEnter += (s, e) => btnCompare.BackColor = Color.FromArgb(30, 144, 255);
         btnCompare.MouseLeave += (s, e) => btnCompare.BackColor = Color.FromArgb(0, 120, 215);
         btnCompare.Parent = panelButtons;
-        toolTip.SetToolTip(btnCompare, "Сравнить две дроби по различным операторам");
+        toolTip.SetToolTip(btnCompare, "РЎСЂР°РІРЅРёС‚СЊ РґРІРµ РґСЂРѕР±Рё РїРѕ СЂР°Р·Р»РёС‡РЅС‹Рј РѕРїРµСЂР°С‚РѕСЂР°Рј");
 
-        // Заголовок для результатов
-        lblResultTitle.Text = "Результаты";
+        // Р—Р°РіРѕР»РѕРІРѕРє РґР»СЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ
+        lblResultTitle.Text = "Р РµР·СѓР»СЊС‚Р°С‚С‹";
         lblResultTitle.Location = new Point(20, 195);
         lblResultTitle.Size = new Size(100, 20);
         lblResultTitle.Font = new Font(SystemFonts.DefaultFont.FontFamily.Name, 11, FontStyle.Bold);
         lblResultTitle.ForeColor = Color.White;
         lblResultTitle.Parent = this;
 
-        // Панель для результатов с прокруткой
+        // РџР°РЅРµР»СЊ РґР»СЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ СЃ РїСЂРѕРєСЂСѓС‚РєРѕР№
         panelResult.Location = new Point(20, 220);
         panelResult.Size = new Size(430, 120);
         panelResult.BorderStyle = BorderStyle.FixedSingle;
@@ -345,14 +345,14 @@ public class FractionCalculatorForm : Form
         panelResult.AutoScroll = true;
         panelResult.Parent = this;
 
-        // Метка результатов внутри панели
+        // РњРµС‚РєР° СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РІРЅСѓС‚СЂРё РїР°РЅРµР»Рё
         lblResult.Location = new Point(5, 5);
         lblResult.AutoSize = true;
         lblResult.MaximumSize = new Size(410, 0);
         lblResult.ForeColor = Color.White;
         lblResult.Font = new Font(SystemFonts.DefaultFont.FontFamily.Name, 11);
         lblResult.Parent = panelResult;
-        toolTip.SetToolTip(lblResult, "Результаты операций или сравнений");
+        toolTip.SetToolTip(lblResult, "Р РµР·СѓР»СЊС‚Р°С‚С‹ РѕРїРµСЂР°С†РёР№ РёР»Рё СЃСЂР°РІРЅРµРЅРёР№");
     }
 
     private void BtnAdd_Click(object? sender, EventArgs e)
@@ -362,11 +362,11 @@ public class FractionCalculatorForm : Form
             Fraction f1 = GetFraction(txtInt1, txtFrac1);
             Fraction f2 = GetFraction(txtInt2, txtFrac2);
             Fraction result = f1 + f2;
-            lblResult.Text = $"Результат: {f1} + {f2} = {result}";
+            lblResult.Text = $"Р РµР·СѓР»СЊС‚Р°С‚: {f1} + {f2} = {result}";
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.Message, "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -377,11 +377,11 @@ public class FractionCalculatorForm : Form
             Fraction f1 = GetFraction(txtInt1, txtFrac1);
             Fraction f2 = GetFraction(txtInt2, txtFrac2);
             Fraction result = f1 - f2;
-            lblResult.Text = $"Результат: {f1} - {f2} = {result}";
+            lblResult.Text = $"Р РµР·СѓР»СЊС‚Р°С‚: {f1} - {f2} = {result}";
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.Message, "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -392,11 +392,11 @@ public class FractionCalculatorForm : Form
             Fraction f1 = GetFraction(txtInt1, txtFrac1);
             Fraction f2 = GetFraction(txtInt2, txtFrac2);
             Fraction result = f1 * f2;
-            lblResult.Text = $"Результат: {f1} * {f2} = {result}";
+            lblResult.Text = $"Р РµР·СѓР»СЊС‚Р°С‚: {f1} * {f2} = {result}";
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.Message, "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -406,27 +406,27 @@ public class FractionCalculatorForm : Form
         {
             Fraction f1 = GetFraction(txtInt1, txtFrac1);
             Fraction f2 = GetFraction(txtInt2, txtFrac2);
-            string comparison = $"Сравнение:\n" +
-                               $"f1 == f2: {(f1 == f2 ? "Истина" : "Ложь")}\n" +
-                               $"f1 != f2: {(f1 != f2 ? "Истина" : "Ложь")}\n" +
-                               $"f1 < f2: {(f1 < f2 ? "Истина" : "Ложь")}\n" +
-                               $"f1 > f2: {(f1 > f2 ? "Истина" : "Ложь")}\n" +
-                               $"f1 <= f2: {(f1 <= f2 ? "Истина" : "Ложь")}\n" +
-                               $"f1 >= f2: {(f1 >= f2 ? "Истина" : "Ложь")}";
+            string comparison = $"РЎСЂР°РІРЅРµРЅРёРµ:\n" +
+                               $"f1 == f2: {(f1 == f2 ? "РСЃС‚РёРЅР°" : "Р›РѕР¶СЊ")}\n" +
+                               $"f1 != f2: {(f1 != f2 ? "РСЃС‚РёРЅР°" : "Р›РѕР¶СЊ")}\n" +
+                               $"f1 < f2: {(f1 < f2 ? "РСЃС‚РёРЅР°" : "Р›РѕР¶СЊ")}\n" +
+                               $"f1 > f2: {(f1 > f2 ? "РСЃС‚РёРЅР°" : "Р›РѕР¶СЊ")}\n" +
+                               $"f1 <= f2: {(f1 <= f2 ? "РСЃС‚РёРЅР°" : "Р›РѕР¶СЊ")}\n" +
+                               $"f1 >= f2: {(f1 >= f2 ? "РСЃС‚РёРЅР°" : "Р›РѕР¶СЊ")}";
             lblResult.Text = comparison;
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.Message, "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
     private Fraction GetFraction(TextBox intBox, TextBox fracBox)
     {
         if (!long.TryParse(intBox.Text, out long integer))
-            throw new Exception("Некорректная целая часть.");
+            throw new Exception("РќРµРєРѕСЂСЂРµРєС‚РЅР°СЏ С†РµР»Р°СЏ С‡Р°СЃС‚СЊ.");
         if (!ushort.TryParse(fracBox.Text, out ushort fractional) || fractional > 999)
-            throw new Exception("Дробная часть должна быть от 0 до 999.");
+            throw new Exception("Р”СЂРѕР±РЅР°СЏ С‡Р°СЃС‚СЊ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РѕС‚ 0 РґРѕ 999.");
         return new Fraction(integer, fractional);
     }
 }
