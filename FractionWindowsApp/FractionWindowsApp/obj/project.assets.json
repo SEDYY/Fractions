@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Student47-04\\Desktop\\ПРОТ\\FractionWindowsApp\\FractionWindowsApp\\FractionWindowsApp.csproj",
+      "projectUniqueName": "D:\\Fractions\\FractionWindowsApp\\FractionWindowsApp\\FractionWindowsApp.csproj",
       "projectName": "FractionWindowsApp",
-      "projectPath": "D:\\Student47-04\\Desktop\\ПРОТ\\FractionWindowsApp\\FractionWindowsApp\\FractionWindowsApp.csproj",
+      "projectPath": "D:\\Fractions\\FractionWindowsApp\\FractionWindowsApp\\FractionWindowsApp.csproj",
       "packagesPath": "C:\\Users\\Student47-04\\.nuget\\packages\\",
-      "outputPath": "D:\\Student47-04\\Desktop\\ПРОТ\\FractionWindowsApp\\FractionWindowsApp\\obj\\",
+      "outputPath": "D:\\Fractions\\FractionWindowsApp\\FractionWindowsApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
