@@ -41,10 +41,10 @@ public class Fraction
     {
         decimal sum = a.ToDecimal() + b.ToDecimal();
         if (sum > long.MaxValue || sum < long.MinValue)
-            throw new OverflowException("Результат сложения превышает допустимый диапазон.");
+            throw new OverflowException("Результат сложения превышает допустимый диапазон.");   
         long integer = (long)sum;
-        ushort fractional = (ushort)Math.Round(Math.Abs(sum - integer) * 1000, 0);
-        if (fractional > 999) fractional = 999;
+        ushort fractional = (ushort)Math.Round(Math.Abs(sum - integer) * 1000, 0); // БЫЛ ДОБАВЛЕН Math.Round, ПРЕДОТВРАЩАЮЩИЙ
+        if (fractional > 999) fractional = 999;                                    // ПОТЕРЮ ДРОБНОЙ ЧАСТИ
         return new Fraction(integer, fractional);
     }
 
@@ -74,7 +74,7 @@ public class Fraction
     {
         if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
             return false;
-        return Math.Abs(a.ToDecimal() - b.ToDecimal()) < 0.0001m;
+        return Math.Abs(a.ToDecimal() - b.ToDecimal()) < 0.0001m; //БЫЛА ИЗМЕНЕНА ЛОГИКА СРАВНЕНИЯ ДРОБЕЙ
     }
 
     public static bool operator !=(Fraction a, Fraction b)
@@ -172,7 +172,7 @@ public class FractionCalculatorForm : Form
         panelFirstFraction.Size = new Size(210, 110);
         panelFirstFraction.BorderStyle = BorderStyle.FixedSingle;
         panelFirstFraction.BackColor = Color.FromArgb(45, 45, 45);
-        panelFirstFraction.Parent = this;
+        panelFirstFraction.Parent = this; //БЫЛА ДОБАВЛЕНА ФРАКЦИЯ ПАНЕЛИ
 
         // Метки и поля для первой дроби
         var lblFirstFraction = new Label
